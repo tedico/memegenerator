@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet")
+    link(rel="stylesheet", type="text/css", href="/css/main.css")
+
+    title Meme Generator
+  body
+    .canvas-container
+      h1(class="display-text")= title
+      p= msg ? msg : msg
+      form(class="form__image-upload" action="/uploads" method="POST" enctype="multipart/form-data")
+        fieldset
+          legend= subtitle
+          label.input__label Meme Text
+            input(type="text" placeholder="Enter your meme text here..." name="memeText" class="input")
+          label.input__label Pick your text color
+            input(type="color" class="input" name="colorValue")
+          label.input__label Pick your font style
+            select(name="fontStyles" id="font-styles" class="input")
+              option(value="Roboto") Roboto
+              option(value="Monospace") Monospace
+              option(value="handwriting") Handwriting
+          label.input__label Pick your font size
+            select(name="fontSize" id="font-size" class="input")
+              option(value="32") 32px
+              option(value="40") 40px
+              option(value="48") 48px
+          label.input__label Pick your meme image
+            input(type="text" placeholder="choose image to upload..." class="input")
+            input(type="file" name="myImage" class="input")
+            button(type="submit" class="submit-btn") Meme 👊 me 
+      img(src="", alt="" class="img-responsive") 
+  script(src="app.js" type="text/js")
