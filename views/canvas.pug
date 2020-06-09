@@ -3,17 +3,42 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Permanent+Marker&family=Roboto:wght@500&display=swap" rel="stylesheet")
     link(rel="stylesheet", type="text/css", href="/css/main.css")
     title Meme Generator
   body
-    p=msg
-    p=req.file.path
-    p=req.file.filename
-    p=req.body.memeText
-    p=req.body.colorValue
-    p=req.body.fontStyles
-    p=req.body.fontSize
-    canvas(id="main-canvas" width="550px" height="350px" class="canvas__canvas")
+    .canvas-container
+      p(style=`text-align: center; font-family: ${fontStyles}; font-size: 40px;`)= msg
+      div(style=`position: relative;`)
+        img(style=`display: block;` src=`${file}` class="canvas_image")
+        p(style= `
+            position: absolute;
+            top: 50%;
+            left: 15%;
+            z-index: 1000;
+            color: ${colorValue};
+            font-family: ${fontStyles};
+            font-size: ${fontSize};`)= memeText
+        //- p= colorValue
+        //- p= fontStyles
+        //- p= fontSize
+      //- canvas(id="main-canvas" width="750px" height="550px" class="canvas__canvas")
 
+  script.
+    console.log("This is printing out in the browser! Yay!")
+    const canvas = document.querySelector('#main-canvas')
+    const context = canvas.getContext('2d')
+    const canvasImage = new Image()
+    canvasImage.src = `${file}`
+
+    function loadImage() {
+      context.drawImage(canvasImage, 0, 0, 550, 350);
+      const displayText = memeText;
+      context.font = `bold ${fontSize} ${fontStyles}, cursive, monospace, sans-serif`;
+      context.fillStyle = `${colorValue}`;
+      context.fillText(displayText, 40, 125);
+    }
+
+    canvasImage.addEventListener('load', loadImage, false)
   script(src="app.js" type="text/js")
+

@@ -2,7 +2,7 @@
   "name": "memegenerator",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "pug -w ./ -o ./dist -P"
@@ -11,7 +11,11 @@
   "author": "Ted Sandico <tedsandico@tedsandico.com> (www.tedsandico.com)",
   "license": "MIT",
   "devDependencies": {
-    "pug": "^3.0.0",
     "pug-cli": "^1.0.0-alpha6"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "multer": "^1.4.2",
+    "pug": "^3.0.0"
   }
 }
